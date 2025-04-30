@@ -17,11 +17,12 @@ with open(lock_file_path, 'w') as lock_file:
 
 
 def on_window_close():
-    # Remove the lock file when the GUI is closed
-    os.remove(lock_file_path)
+    
     # Ask a question in a separate confirmation window
     result = messagebox.askyesno("Closing livestream", "When you close this window you will shut down the livestream")
     if result:
+        # Remove the lock file when the GUI is closed
+        os.remove(lock_file_path)
         window.destroy()  # Close the main window if the user confirms
         execute_stop_on_pi(ssh)
         with sftp.file("/home/pi/docs/halpha/sun_catching/error_log.txt", 'w') as file:
@@ -80,7 +81,7 @@ def function_for_button2():
             file.write("")
 
 # Raspberry Pi details
-raspberry_pi_ip = "172.16.8.52"
+raspberry_pi_ip = "172.16.10.248"
 raspberry_pi_username = "pi"
 raspberry_pi_password = "raspberry"
 port = 22
