@@ -1,0 +1,11 @@
+# docker-compose.yml
+version: "3.9"
+services:
+  livestream:
+    build: .
+    ports:
+      - "5901:5901"
+    volumes:
+      - ./:/app
+
+      
